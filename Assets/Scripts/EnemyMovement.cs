@@ -22,7 +22,6 @@ public class EnemyMovement : MonoBehaviour
     {
         while (state < nodes.Length)
         {
-            Debug.Log(nodes[state]);
             Vector3 distance = nodes[state] - transform.position;
             Vector3 step = distance.normalized;
 
@@ -30,6 +29,6 @@ public class EnemyMovement : MonoBehaviour
             yield return new WaitForSeconds(distance.magnitude / (step.magnitude * speed));
             state++;
         }
-        Destroy(gameObject);
+        gameObject.GetComponent<EnemyState>().Explode();
     }
 }
